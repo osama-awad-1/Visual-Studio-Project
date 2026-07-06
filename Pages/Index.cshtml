@@ -1,0 +1,120 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Osama's Showcase";
+}
+
+<!-- Custom CSS Styling -->
+<style>
+    :root {
+        --bg-color: #0d1117;
+        --card-bg: #161b22;
+        --accent-color: #58a6ff;
+        --text-color: #c9d1d9;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container-custom {
+        text-align: center;
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 800px;
+        width: 100%;
+    }
+
+    /* Target for JS Animation Loop */
+    h1#animated-header {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        background: linear-gradient(90deg, #ff007f, #7f00ff, #00f0ff, #ff007f);
+        background-size: 300% 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(127, 0, 255, 0.2);
+    }
+
+    p.subtitle {
+        color: #8b949e;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        border: 2px solid #30363d;
+    }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+</style>
+
+<!-- HTML Structure -->
+<div class="container-custom">
+    <!-- Animated Header -->
+    <h1 id="animated-header">Osama Awad's Hub</h1>
+    <p class="subtitle">ASP.NET Core Web App • Creative Portfolio</p>
+
+    <!-- Embedded YouTube Video -->
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/4NRXx6U8ABQ?si=7B5YhM9GfK9w2v8W"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<!-- JavaScript Loop Animation -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const header = document.getElementById("animated-header");
+        let position = 0;
+
+        // Smooth, infinite loop animating the CSS gradient background position
+        function animateGradient() {
+            position += 0.5; // Controls the speed of the loop
+            if (position >= 300) {
+                position = 0;
+            }
+
+            // Updates the background position dynamically
+            header.style.backgroundPosition = `${position}% 50%`;
+
+            // Requests the next animation frame to keep the loop going flawlessly
+            requestAnimationFrame(animateGradient);
+        }
+
+        // Kick off the animation loop
+        animateGradient();
+    });
+</script>
